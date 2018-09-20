@@ -1,9 +1,11 @@
 import { combineReducers } from "redux";
+import { reducer as form } from "redux-form";
 import authReducer from "./auth";
 
 export const RESET_GLOBAL_STATE = "RESET_GLOBAL_STATE";
 
 const appReducer = combineReducers({
+  form: form,
   auth: authReducer
 });
 

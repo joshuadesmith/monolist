@@ -6,6 +6,7 @@ import SignUp from "../containers/auth/SignUp";
 import CommonButton from "../components/CommonButton";
 import { bindActionCreators } from "redux";
 import { resetGlobalState } from "../actions";
+import UnauthenticatedView from "./auth/UnauthenticatedView";
 
 const instructions = Platform.select({
   ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
@@ -64,7 +65,7 @@ class RootContainer extends React.Component {
         />
       </View>
     ) : (
-      <SignUp />
+      <UnauthenticatedView />
     );
   }
 }

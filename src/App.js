@@ -15,14 +15,20 @@ import RootContainer from "./containers/RootContainer";
 
 Amplify.configure(awsmobile);
 
-class App extends React.Component {
+export default class App extends React.Component {
   render() {
     return (
-      <View>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          backgroundColor: "F5FCFF"
+        }}
+      >
         <RootContainer />
       </View>
     );
   }
 }
 
-export default withAuthenticator(App);
+// export default withAuthenticator(App, { includeGreetings: true });

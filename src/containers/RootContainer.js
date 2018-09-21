@@ -2,7 +2,7 @@ import React from "react";
 import { Platform, StatusBar, StyleSheet, Text, View } from "react-native";
 import { Auth } from "aws-amplify";
 import { connect } from "react-redux";
-import SignUp from "../containers/auth/SignUp";
+import SignUp from "./auth/SignUpView";
 import CommonButton from "../components/CommonButton";
 import { bindActionCreators } from "redux";
 import { resetGlobalState } from "../actions";
@@ -29,8 +29,8 @@ class RootContainer extends React.Component {
   async componentDidMount() {
     StatusBar.setHidden(true);
     try {
-      const user = await Auth.currentAuthenticatedUser();
-      console.log("Current user: ", user);
+      // const user = await Auth.currentAuthenticatedUser();
+      // console.log("Current user: ", user);
       this.setState({ user, isLoading: false });
     } catch (error) {
       this.setState({ isLoading: false });
@@ -38,13 +38,13 @@ class RootContainer extends React.Component {
   }
 
   async componentWillReceiveProps(nextProps) {
-    try {
-      const user = await Auth.currentAuthenticatedUser();
-      console.log("Current user: ", user);
-      this.setState({ user });
-    } catch (error) {
-      this.setState({ user: {} });
-    }
+    // try {
+    //   const user = await Auth.currentAuthenticatedUser();
+    //   console.log("Current user: ", user);
+    //   this.setState({ user });
+    // } catch (error) {
+    //   this.setState({ user: {} });
+    // }
   }
 
   render() {

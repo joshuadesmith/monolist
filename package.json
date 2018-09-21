@@ -11,6 +11,7 @@
     "aws-amplify-react-native": "^2.0.1",
     "react": "16.5.0",
     "react-native": "0.57.0",
+    "react-native-vector-icons": "^5.0.0",
     "react-navigation": "^2.14.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",

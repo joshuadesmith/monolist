@@ -5,10 +5,9 @@ export const resetGlobalState = () => ({
   type: RESET_GLOBAL_STATE
 });
 
-export const signUp = ({ username, email, password }) => ({
+export const signUp = ({ email, password }) => ({
   type: SIGN_UP,
   payload: {
-    username,
     email,
     password
   }

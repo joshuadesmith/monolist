@@ -71,3 +71,4 @@ awsmobilejs/\#current-backend-info
 # AWS Amplify
 amplify/
 .amplifyrc
+src/asw-amplify-config.js

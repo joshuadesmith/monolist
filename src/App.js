@@ -9,11 +9,10 @@
 import React from "react";
 import { View } from "react-native";
 import Amplify from "aws-amplify";
-import { withAuthenticator } from "aws-amplify-react-native";
-import awsmobile from "./aws-exports";
+import config from "./aws-amplify-config";
 import RootContainer from "./containers/RootContainer";
 
-Amplify.configure(awsmobile);
+Amplify.configure(config);
 
 export default class App extends React.Component {
   render() {

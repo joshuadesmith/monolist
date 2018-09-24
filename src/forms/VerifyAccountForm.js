@@ -20,7 +20,7 @@ const VerifyAccountForm = (props) => {
                     style={styles.textField}
                 />
                 <TouchableOpacity onPress={props.handleSubmit}>
-                    <Text>Verify</Text>
+                    <Text style={{color: "#FFFFFF"}}>Verify</Text>
                 </TouchableOpacity>
             </ScrollView>
         </View>
@@ -33,11 +33,12 @@ export default reduxForm({
 
 const styles = StyleSheet.create({
     textField: {
-        color: "#000000",
-        backgroundColor: "#ffffff",
-        marginHorizontal: 10,
-        marginBottom: 10,
+        color: "#BB3CBB",
+        backgroundColor: "#E6E6E6",
+        marginBottom: 5,
         paddingVertical: 10,
-        fontSize: 20
+        paddingHorizontal: 20,
+        fontSize: 20,
+        borderRadius: 20,
     }
 });

@@ -8,6 +8,15 @@ import {connect} from "react-redux";
 const koala = require('../../assets/Wildlife-icons/png/animals-56.png');
 
 class SignInView extends React.Component {
+    static navigationOptions = {
+        headerStyle: {
+            backgroundColor: "#666666",
+        },
+        headerTitleStyle: {
+            color: "#CCCCCC",
+        }
+    };
+
     constructor(props) {
         super(props);
         this.dispatchSignIn = this.dispatchSignIn.bind(this);
@@ -78,15 +87,17 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        paddingHorizontal: 40
+        paddingHorizontal: 40,
+        backgroundColor: "#666666",
     },
     greeting: {
         marginTop: 20,
         fontSize: 24,
+        color: "#FFFFFF"
     },
     greeting2: {
-        color: '#666',
+        color: '#E6E6E6',
         fontSize: 24,
-        marginTop: 5,
-    }
+        marginTop: 5
+    },
 });

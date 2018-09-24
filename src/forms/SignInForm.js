@@ -28,7 +28,7 @@ const SignInForm = props => {
                     secureTextEntry
                 />
                 <TouchableOpacity onPress={props.handleSubmit}>
-                    <Text>Sign In</Text>
+                    <Text style={{color: "#FFFFFF"}}>Sign In</Text>
                 </TouchableOpacity>
             </ScrollView>
         </View>
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         padding: 10,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#d1d1d1"
+        backgroundColor: "#666666"
     },
     welcome: {
         fontSize: 20,
@@ -56,11 +56,12 @@ const styles = StyleSheet.create({
         marginBottom: 5
     },
     textField: {
-        color: "#000000",
-        backgroundColor: "#ffffff",
-        marginHorizontal: 10,
-        marginBottom: 10,
+        color: "#BB3CBB",
+        backgroundColor: "#E6E6E6",
+        marginBottom: 5,
         paddingVertical: 10,
-        fontSize: 20
+        paddingHorizontal: 20,
+        fontSize: 20,
+        borderRadius: 20,
     }
 });

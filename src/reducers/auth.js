@@ -1,5 +1,10 @@
 import {createReducer} from "../utils";
 
+export const FETCH_AUTHORIZED_USER = "FETCH_AUTHORIZED_USER";
+export const FETCH_AUTHORIZED_USER_IN_PROGRESS = "FETCH_AUTHORIZED_USER_IN_PROGRESS";
+export const FETCH_AUTHORIZED_USER_SUCCESS = "FETCH_AUTHORIZED_USER_SUCCESS";
+export const FETCH_AUTHORIZED_USER_FAILURE = "FETCH_AUTHORIZED_USER_FAILURE";
+
 export const SIGN_IN = "SIGN_IN";
 export const SIGN_IN_IN_PROGRESS = "SIGN_IN_IN_PROGRESS";
 export const SIGN_IN_SUCCESS = "SIGN_IN_SUCCESS";
@@ -20,7 +25,7 @@ export const VERIFY_ACCOUNT_SUCCESS = "VERIFY_ACCOUNT_SUCCESS";
 export const VERIFY_ACCOUNT_FAILURE = "VERIFY_ACCOUNT_FAILURE";
 
 const initialState = {
-    isAuthenticating: false,
+    isLoading: false,
     user: {},
     userConfirmed: false,
 
@@ -28,49 +33,50 @@ const initialState = {
     signInError: false,
 
     signUpErrorMessage: "",
-    signInErrorMessage: ""
+    signInErrorMessage: "",
 };
 
 export default createReducer(initialState, {
-    [SIGN_UP]: (state, payload) =>
-        Object.assign({}, state, {
-            isAuthenticating: false
+    [FETCH_AUTHORIZED_USER_IN_PROGRESS]: (state) => Object.assign({}, state, {
+        isLoading: true
+    }),
+    [FETCH_AUTHORIZED_USER_SUCCESS]: (state, payload) => Object.assign({}, state, {
+        isLoading: false,
+        user: payload.user,
+    }),
+    [FETCH_AUTHORIZED_USER_FAILURE]: (state, payload) => Object.assign({}, state, {
+        isLoading: false,
+        signInError: true,
+        signInErrorMessage: payload.error,
+        user: {},
+    }),
+    [SIGN_UP_IN_PROGRESS]: state => Object.assign({}, state, {
+            isLoading: true,
         }),
-    [SIGN_UP_IN_PROGRESS]: state =>
-        Object.assign({}, state, {
-            isAuthenticating: true,
-        }),
-    [SIGN_UP_SUCCESS]: (state, payload) =>
-        Object.assign({}, state, {
-            isAuthenticating: false,
+    [SIGN_UP_SUCCESS]: (state) => Object.assign({}, state, {
+            isLoading: false,
             signUpError: false,
         }),
-    [SIGN_UP_FAILURE]: (state, payload) =>
-        Object.assign({}, state, {
-            isAuthenticating: false,
+    [SIGN_UP_FAILURE]: (state, payload) => Object.assign({}, state, {
+            isLoading: false,
             signUpError: true,
-            signUpErrorMessage: payload.error.message,
+            signUpErrorMessage: payload.error,
         }),
-    [VERIFY_ACCOUNT_IN_PROGESS]: state =>
-        Object.assign({}, state, {
-            isAuthenticating: true,
+    [VERIFY_ACCOUNT_IN_PROGESS]: state => Object.assign({}, state, {
+            isLoading: true,
         }),
-    [VERIFY_ACCOUNT_SUCCESS]: (state) =>
-        Object.assign({}, state, {
-            isAuthenticating: false,
+    [VERIFY_ACCOUNT_SUCCESS]: (state) => Object.assign({}, state, {
+            isLoading: false,
             userConfirmed: true,
         }),
-    [VERIFY_ACCOUNT_FAILURE]: (state) =>
-        Object.assign({}, state, {
-            isAuthenticating: false,
+    [VERIFY_ACCOUNT_FAILURE]: (state) => Object.assign({}, state, {
+            isLoading: false,
         }),
-    [SIGN_IN_IN_PROGRESS]: (state) =>
-        Object.assign({}, state, {
-            isAuthenticating: true,
+    [SIGN_IN_IN_PROGRESS]: (state) => Object.assign({}, state, {
+            isLoading: true,
         }),
-    [SIGN_IN_SUCCESS]: (state, payload) =>
-        Object.assign({}, state, {
-            isAuthenticating: false,
+    [SIGN_IN_SUCCESS]: (state, payload) => Object.assign({}, state, {
+            isLoading: false,
             user: {
                 username: payload.username,
             },
@@ -78,13 +84,11 @@ export default createReducer(initialState, {
             signInError: false,
             signInErrorMessage: "",
         }),
-    [SIGN_IN_FAILURE]: (state, payload) =>
-        Object.assign({}, state, {
-            isAuthenticating: false,
+    [SIGN_IN_FAILURE]: (state, payload) => Object.assign({}, state, {
+            isLoading: false,
             signInError: true,
-            signInErrorMessage: payload.error.message,
+            signInErrorMessage: payload.error,
             user: {},
         }),
-    [SIGN_OUT_COMPLETE]: (state) =>
-        Object.assign({}, state, initialState),
+    [SIGN_OUT_COMPLETE]: (state) => Object.assign({}, state, initialState),
 });

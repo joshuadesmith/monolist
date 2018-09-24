@@ -1,4 +1,12 @@
-import {SIGN_UP, SIGN_UP_SUCCESS, SIGN_UP_FAILURE, VERIFY_ACCOUNT, SIGN_IN} from "./reducers/auth";
+import {
+    SIGN_UP,
+    SIGN_UP_SUCCESS,
+    SIGN_UP_FAILURE,
+    VERIFY_ACCOUNT,
+    SIGN_IN,
+    SIGN_OUT,
+    FETCH_AUTHORIZED_USER
+} from "./reducers/auth";
 import {RESET_GLOBAL_STATE} from "./reducers";
 
 export const resetGlobalState = () => ({
@@ -43,4 +51,12 @@ export const signIn = ({email, password}) => ({
         email,
         password,
     }
+});
+
+export const signOut = () => ({
+    type: SIGN_OUT,
+});
+
+export const fetchAuthorizedUser = () => ({
+    type: FETCH_AUTHORIZED_USER,
 });

@@ -2,12 +2,12 @@ import * as React from "react";
 import {Image, StyleSheet, Text, View} from "react-native";
 
 import {connect} from "react-redux";
-import {signUp} from "../../actions";
+import {signUp} from "../../../actions";
 
 import {bindActionCreators} from "redux";
-import SignUpForm from "../../forms/SignUpForm";
+import SignUpForm from "./SignUpForm";
 
-const lemur = require('../../assets/Wildlife-icons/png/animals-57.png');
+const lemur = require('../../../assets/Wildlife-icons/png/animals-57.png');
 
 class SignUpView extends React.Component {
     static navigationOptions = {

@@ -8,17 +8,17 @@ import {
     VERIFY_ACCOUNT_IN_PROGESS,
     VERIFY_ACCOUNT_SUCCESS,
     VERIFY_ACCOUNT_FAILURE,
-    SIGN_IN,
-    SIGN_IN_IN_PROGRESS,
-    SIGN_IN_SUCCESS,
-    SIGN_IN_FAILURE,
+    LOG_IN,
+    LOG_IN_PROCESSING,
+    LOG_IN_SUCCESS,
+    LOG_IN_FAILURE,
     SIGN_OUT,
     SIGN_OUT_IN_PROGRESS,
     SIGN_OUT_COMPLETE,
     FETCH_AUTHORIZED_USER,
     FETCH_AUTHORIZED_USER_IN_PROGRESS, FETCH_AUTHORIZED_USER_SUCCESS, FETCH_AUTHORIZED_USER_FAILURE
 } from "../reducers/auth";
-import {signUpFailure, signUpSuccess} from "../actions";
+import {signUpFailure, signUpSuccess} from "../../../actions";
 import {Auth} from "aws-amplify";
 
 function createUser(email, password) {
@@ -115,20 +115,20 @@ function* callVerifyAccount(action) {
 
 function* callSignInUser(action) {
     const {email, password} = action.payload;
-    yield put({type: SIGN_IN_IN_PROGRESS});
+    yield put({type: LOG_IN_PROCESSING});
 
     const response = yield call(signInUser, email, password);
     console.log("Got response form signInUser: ", response);
     if (response.hasOwnProperty('data')) {
         console.log("Signed in user successfully");
         yield put({
-            type: SIGN_IN_SUCCESS,
+            type: LOG_IN_SUCCESS,
             payload: response.data,
         });
     } else if (response.hasOwnProperty('error')) {
         console.log("User sign in failed");
         yield put({
-            type: SIGN_IN_FAILURE,
+            type: LOG_IN_FAILURE,
             payload: {
                 signInError: response.error,
             }
@@ -164,7 +164,7 @@ function* callFetchAuthorizedUser() {
 export function* authSagas() {
     yield takeLatest(SIGN_UP, callCreateUser);
     yield takeLatest(VERIFY_ACCOUNT, callVerifyAccount);
-    yield takeLatest(SIGN_IN, callSignInUser);
+    yield takeLatest(LOG_IN, callSignInUser);
     yield takeLatest(SIGN_OUT, callSignOutUser);
     yield takeLatest(FETCH_AUTHORIZED_USER, callFetchAuthorizedUser)
 }

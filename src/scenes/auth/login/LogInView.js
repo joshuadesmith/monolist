@@ -1,11 +1,13 @@
-import React from "react";
-import {StyleSheet, Text, View} from "react-native";
+import * as React from "react";
+import {Image, StyleSheet, Text, View} from "react-native";
+import SignInForm from "./LogInForm";
 import {bindActionCreators} from "redux";
-import {verifyAccount} from "../../actions";
+import {logIn} from "../../../actions";
 import {connect} from "react-redux";
-import VerifyAccountForm from "../../forms/VerifyAccountForm";
 
-class VerifyAccountView extends React.Component {
+const koala = require('../../../assets/Wildlife-icons/png/animals-56.png');
+
+class LogInView extends React.Component {
     static navigationOptions = {
         headerStyle: {
             backgroundColor: "#666666",
@@ -17,31 +19,34 @@ class VerifyAccountView extends React.Component {
 
     constructor(props) {
         super(props);
-        this.dispatchVerify = this.dispatchVerify.bind(this);
+        this.dispatchSignIn = this.dispatchSignIn.bind(this);
     }
 
-    dispatchVerify(formValues) {
-        console.log("Dispatching verify: ", formValues);
-        this.props.verifyAccount({
-            email: formValues.email,
-            code: formValues.code,
+    dispatchSignIn(values) {
+        console.log("Dispatching sign in: ", values);
+        this.props.signIn({
+            email: values.email,
+            password: values.password,
         });
     }
 
     render() {
         return (
             <View style={styles.container}>
+                <View style={styles.header}>
+                    <Image source={koala} style={styles.headingImage} resizeMode={"contain"}/>
+                </View>
                 <Text style={styles.greeting}>
-                    Verify your account:
+                    Welcome back,
                 </Text>
                 <Text style={styles.greeting2}>
-                    Enter the code we sent to your email
+                    sign in to continue
                 </Text>
                 <View style={styles.inputContainer}>
-                    <VerifyAccountForm onSubmit={(values) => this.dispatchVerify(values)}/>
+                    <SignInForm onSubmit={values => this.dispatchSignIn(values)}/>
                 </View>
             </View>
-        )
+        );
     }
 }
 
@@ -50,19 +55,31 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    verifyAccount: bindActionCreators(verifyAccount, dispatch),
+    signIn: bindActionCreators(logIn, dispatch),
 });
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(VerifyAccountView);
+)(LogInView);
 
 const styles = StyleSheet.create({
     modal: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    heading: {
+        flexDirection: 'row'
+    },
+    headingImage: {
+        width: 38,
+        height: 38
+    },
+    errorMessage: {
+        fontSize: 12,
+        marginTop: 10,
+        color: 'transparent',
     },
     inputContainer: {
         marginTop: 20
@@ -80,19 +97,7 @@ const styles = StyleSheet.create({
     },
     greeting2: {
         color: '#E6E6E6',
-        fontSize: 18,
+        fontSize: 24,
         marginTop: 5
     },
-    heading: {
-        flexDirection: 'row'
-    },
-    headingImage: {
-        width: 38,
-        height: 38
-    },
-    errorMessage: {
-        fontSize: 12,
-        marginTop: 10,
-        color: 'transparent'
-    }
 });

@@ -1,45 +1,41 @@
-import React from "react";
-import CustomTextInput from "../components/CustomTextInput";
-import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import {Field, reduxForm} from "redux-form";
-import {validateSignUp} from "./validators";
+import * as React from "react";
+import {reduxForm, Field} from "redux-form";
+import {
+    ScrollView,
+    View,
+    Text,
+    TouchableOpacity,
+    StyleSheet
+} from "react-native";
 
-const SignUpForm = (props) => {
+import CustomTextInput from "../../../common/components/CustomTextInput";
+
+const LogInForm = props => {
     return (
         <View>
-            <ScrollView>
+            <ScrollView keyboardShouldPersistTaps={"handled"}>
                 <Field
                     name={"email"}
                     component={CustomTextInput}
-                    placeholder={"your@email.here"}
+                    placeholder={"Email"}
                     style={styles.textField}
                 />
                 <Field
-                    name={"password1"}
+                    name={"password"}
                     component={CustomTextInput}
-                    placeholder={"Enter a password"}
-                    style={styles.textField}
-                    secureTextEntry
-                />
-                <Field
-                    name={"password2"}
-                    component={CustomTextInput}
-                    placeholder={"Re-enter your password"}
+                    placeholder={"Password"}
                     style={styles.textField}
                     secureTextEntry
                 />
                 <TouchableOpacity onPress={props.handleSubmit}>
-                    <Text style={{color: "#FFFFFF"}}>Sign Up</Text>
+                    <Text style={{color: "#FFFFFF"}}>Sign In</Text>
                 </TouchableOpacity>
             </ScrollView>
         </View>
     );
 };
 
-export default reduxForm({
-    form: "signUpForm",
-    validate: validateSignUp, // Sync validation
-})(SignUpForm);
+export default reduxForm({form: "logInForm"})(LogInForm);
 
 const styles = StyleSheet.create({
     container: {

@@ -9,7 +9,7 @@ import {
     Dimensions
 } from 'react-native'
 import {bindActionCreators} from "redux";
-import {signOut} from "../actions";
+import {logOut} from "../actions";
 import {connect} from "react-redux";
 
 const {width, height} = Dimensions.get('window');
@@ -31,7 +31,7 @@ class HomeView extends React.Component {
     }
 
     dispatchSignOut() {
-        console.log("dispatching signOut");
+        console.log("dispatching logOut");
         this.props.signOut();
     }
 
@@ -80,7 +80,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    signOut: bindActionCreators(signOut, dispatch),
+    signOut: bindActionCreators(logOut, dispatch),
 });
 
 export default connect(

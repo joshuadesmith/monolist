@@ -6,7 +6,7 @@ import {fetchAuthorizedUser, resetGlobalState} from "../actions";
 import UnauthenticatedView from "./UnauthenticatedView";
 import AuthenticatedView from "./AuthenticatedView";
 
-class RootContainer extends React.Component {
+class RootView extends React.Component {
     constructor(props) {
         super(props);
         this.rootReset = this.rootReset.bind(this);
@@ -56,7 +56,7 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(RootContainer);
+)(RootView);
 
 const styles = StyleSheet.create({
     container: {

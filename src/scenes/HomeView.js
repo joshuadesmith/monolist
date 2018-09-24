@@ -3,11 +3,10 @@ import {
     View,
     Text,
     StyleSheet,
-    Image,
-    Button,
     Animated,
     Dimensions
 } from 'react-native'
+import { Button } from "react-native-elements";
 import {bindActionCreators} from "redux";
 import {logOut} from "../actions";
 import {connect} from "react-redux";
@@ -65,10 +64,20 @@ class HomeView extends React.Component {
                     <Text style={styles.welcome}>Welcome, {username}</Text>
                     <Animated.Image
                         source={whale}
-                        style={{width: width / 2, height: width / 2, transform: [{scale: this.AnimatedScale}]}}
+                        style={{tintColor: "#FF00FF", width: width / 2, height: width / 2, transform: [{scale: this.AnimatedScale}]}}
                         resizeMode='contain'
                     />
-                    <Text onPress={this.dispatchSignOut} style={styles.welcome}>Sign Out</Text>
+                    <Button onPress={this.dispatchSignOut}
+                            style={styles.welcome}
+                            backgroundColor={styles.signOutButton.backgroundColor}
+                            borderRadius={styles.signOutButton.borderRadius}
+                            title={"Log Out"}
+                            fontSize={styles.signOutButton.fontSize}
+                            fontWeight={"bold"}
+                            textStyle={styles.signOutButtonTitle}
+                    >
+                        Sign Out
+                    </Button>
                 </View>
             </View>
         )
@@ -90,7 +99,7 @@ export default connect(
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'white',
+        backgroundColor: '#666666',
         alignItems: 'center',
         justifyContent: 'center',
         flex: 1
@@ -99,16 +108,20 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     welcome: {
-        color: 'rgba(0, 0, 0, .85)',
+        // color: 'rgba(0, 0, 0, .85)',
         marginBottom: 26,
         fontSize: 22,
         textAlign: 'center'
     },
-    registration: {
-        color: 'rgba(0, 0, 0, .5)',
-        marginTop: 20,
+    signOutButton: {
+        marginTop: 15,
+        backgroundColor: '#FF00FF',
+        borderRadius: 20,
+    },
+    signOutButtonTitle: {
+        color: "#FFFFFF",
+        paddingHorizontal: 10,
         fontSize: 16,
-        paddingHorizontal: 20,
-        textAlign: 'center'
+        letterSpacing: 1.25,
     }
 });

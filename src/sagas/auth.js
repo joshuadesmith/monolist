@@ -10,7 +10,13 @@ import {
     VERIFY_ACCOUNT_FAILURE,
     SIGN_IN,
     SIGN_IN_IN_PROGRESS,
-    SIGN_IN_SUCCESS, SIGN_IN_FAILURE
+    SIGN_IN_SUCCESS,
+    SIGN_IN_FAILURE,
+    SIGN_OUT,
+    SIGN_OUT_IN_PROGRESS,
+    SIGN_OUT_COMPLETE,
+    FETCH_AUTHORIZED_USER,
+    FETCH_AUTHORIZED_USER_IN_PROGRESS, FETCH_AUTHORIZED_USER_SUCCESS, FETCH_AUTHORIZED_USER_FAILURE
 } from "../reducers/auth";
 import {signUpFailure, signUpSuccess} from "../actions";
 import {Auth} from "aws-amplify";
@@ -49,6 +55,24 @@ function signInUser(email, password) {
     }).catch((err) => {
         return {error: err};
     })
+}
+
+function signOutUser() {
+    console.log("calling signOutUser...");
+    return Auth.signOut().then((data) => {
+        return {data: data};
+    }).catch((err) => {
+        return {error: err};
+    })
+}
+
+function fetchAuthorizedUser() {
+    console.log("calling fetchAuthorizedUser...");
+    return Auth.currentAuthenticatedUser().then((user) => {
+        return {user: user};
+    }).catch((err) => {
+        return {error: err};
+    });
 }
 
 function* callCreateUser(action) {
@@ -112,8 +136,35 @@ function* callSignInUser(action) {
     }
 }
 
+function* callSignOutUser(action) {
+    yield put({type: SIGN_OUT_IN_PROGRESS});
+    const response = yield call(signOutUser);
+    console.log("logged out user with response: ", response);
+    yield put({type: SIGN_OUT_COMPLETE});
+}
+
+function* callFetchAuthorizedUser() {
+    yield put({type: FETCH_AUTHORIZED_USER_IN_PROGRESS});
+    const response = yield call(fetchAuthorizedUser);
+    if (response.hasOwnProperty('user')) {
+        console.log("Fetched user successfully: ", response);
+        yield put({
+            type: FETCH_AUTHORIZED_USER_SUCCESS,
+            payload: response,
+        });
+    } else if (response.hasOwnProperty('error')) {
+        console.log("Failed to fetch authed user: ", response);
+        yield put({
+            type: FETCH_AUTHORIZED_USER_FAILURE,
+            payload: response,
+        });
+    }
+}
+
 export function* authSagas() {
     yield takeLatest(SIGN_UP, callCreateUser);
     yield takeLatest(VERIFY_ACCOUNT, callVerifyAccount);
     yield takeLatest(SIGN_IN, callSignInUser);
+    yield takeLatest(SIGN_OUT, callSignOutUser);
+    yield takeLatest(FETCH_AUTHORIZED_USER, callFetchAuthorizedUser)
 }

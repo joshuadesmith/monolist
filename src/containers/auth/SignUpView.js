@@ -15,7 +15,6 @@ class SignUpView extends React.Component {
 
     dispatchSignUp(formValues) {
         console.log("Dispatching signup with values: ", formValues);
-        // const {email, password1} = formValues;
         this.props.signUpUser({
             email: formValues.email,
             password: formValues.password1,
@@ -23,9 +22,6 @@ class SignUpView extends React.Component {
     }
 
     render() {
-        const {
-            auth: {isAuthenticating, signUpError, signUpErrorMessage}
-        } = this.props;
         return (
             <View>
                 <SignUpForm onSubmit={(values) => this.dispatchSignUp(values)}/>

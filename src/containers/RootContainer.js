@@ -54,8 +54,7 @@ class RootContainer extends React.Component {
           <Text style={styles.welcome}>Loading...</Text>
         </View>
       );
-
-    return this.props.auth.isAuthenticated ? (
+    return this.props.auth.user.username ? (
       <View>
         <Text>You are authenticated, {this.props.auth.user.username}!</Text>
         <CommonButton

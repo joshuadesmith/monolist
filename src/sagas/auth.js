@@ -29,7 +29,11 @@ function* callCreateUser(action) {
     console.log("Got response from createUser: ", response);
     if (response.hasOwnProperty('data')) {
         console.log("Signup successful");
-        yield put(signUpSuccess(action.payload));
+        yield put(signUpSuccess({
+            user: response.data.user,
+            userConfirmed: response.data.userConfirmed,
+            userSub: response.data.userSub,
+        }));
     } else if (response.hasOwnProperty('error')) {
         console.log("Singup failed");
         yield put(signUpFailure(response.error));

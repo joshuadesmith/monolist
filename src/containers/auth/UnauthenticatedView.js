@@ -3,6 +3,7 @@ import { View, TextInput } from "react-native";
 import CommonButton from "../../components/CommonButton";
 import SignUpView from "./SignUpView";
 import SignInView from "./SignInView";
+import {TabNavigator} from "react-navigation";
 
 class UnauthenticatedView extends React.Component {
   render() {
@@ -26,7 +27,13 @@ const routes = {
         navigationOptions: {
             title: 'Sign Up',
         }
-    }
+    },
+    SignIn: {
+        screen: SignInView,
+        navigationOptions: {
+            title: "Sign In",
+        }
+    },
 };
 
 const routeConfig = {
@@ -36,4 +43,4 @@ const routeConfig = {
     }
 };
 
-export default UnauthenticatedView;
+export default TabNavigator(routes, routeConfig);

@@ -8,29 +8,29 @@ const SignUpForm = (props) => {
     return (
         <View>
             <ScrollView>
-                    <Field
-                        name={"email"}
-                        component={CustomTextInput}
-                        placeholder={"your@email.here"}
-                        style={styles.textField}
-                    />
-                    <Field
-                        name={"password1"}
-                        component={CustomTextInput}
-                        placeholder={"Enter a password"}
-                        style={styles.textField}
-                        secureTextEntry
-                    />
-                    <Field
-                        name={"password2"}
-                        component={CustomTextInput}
-                        placeholder={"Re-enter your password"}
-                        style={styles.textField}
-                        secureTextEntry
-                    />
-                    <TouchableOpacity onPress={props.handleSubmit}>
-                        <Text>Sign Up</Text>
-                    </TouchableOpacity>
+                <Field
+                    name={"email"}
+                    component={CustomTextInput}
+                    placeholder={"your@email.here"}
+                    style={styles.textField}
+                />
+                <Field
+                    name={"password1"}
+                    component={CustomTextInput}
+                    placeholder={"Enter a password"}
+                    style={styles.textField}
+                    secureTextEntry
+                />
+                <Field
+                    name={"password2"}
+                    component={CustomTextInput}
+                    placeholder={"Re-enter your password"}
+                    style={styles.textField}
+                    secureTextEntry
+                />
+                <TouchableOpacity onPress={props.handleSubmit}>
+                    <Text>Sign Up</Text>
+                </TouchableOpacity>
             </ScrollView>
         </View>
     );

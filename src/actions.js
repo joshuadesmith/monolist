@@ -1,4 +1,4 @@
-import {SIGN_UP, SIGN_UP_SUCCESS, SIGN_UP_FAILURE} from "./reducers/auth";
+import {SIGN_UP, SIGN_UP_SUCCESS, SIGN_UP_FAILURE, VERIFY_ACCOUNT} from "./reducers/auth";
 import {RESET_GLOBAL_STATE} from "./reducers";
 
 export const resetGlobalState = () => ({
@@ -26,5 +26,13 @@ export const signUpFailure = err => ({
     type: SIGN_UP_FAILURE,
     payload: {
         error: err
+    }
+});
+
+export const verifyAccount = ({email, code}) => ({
+    type: VERIFY_ACCOUNT,
+    payload: {
+        email,
+        code,
     }
 });

@@ -10,6 +10,11 @@ export const SIGN_UP_IN_PROGRESS = "SIGN_UP_IN_PROGRESS";
 export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
 export const SIGN_UP_FAILURE = "SIGN_UP_FAILURE";
 
+export const VERIFY_ACCOUNT = "VERIFY_ACCOUNT";
+export const VERIFY_ACCOUNT_IN_PROGESS = "VERIFY_ACCOUNT_IN_PROGRESS";
+export const VERIFY_ACCOUNT_SUCCESS = "VERIFY_ACCOUNT_SUCCESS";
+export const VERIFY_ACCOUNT_FAILURE = "VERIFY_ACCOUNT_FAILURE";
+
 const initialState = {
     isAuthenticating: false,
     user: {},
@@ -43,6 +48,21 @@ export default createReducer(initialState, {
         Object.assign({}, state, {
             isAuthenticating: false,
             signUpError: true,
-            signUpErrorMessage: payload.error.message
-        })
+            signUpErrorMessage: payload.error.message,
+            user: {},
+        }),
+    [VERIFY_ACCOUNT_IN_PROGESS]: state =>
+        Object.assign({}, state, {
+            isAuthenticating: true,
+        }),
+    [VERIFY_ACCOUNT_SUCCESS]: (state) =>
+        Object.assign({}, state, {
+            isAuthenticating: false,
+            userConfirmed: true,
+        }),
+    [VERIFY_ACCOUNT_FAILURE]: (state) =>
+        Object.assign({}, state, {
+            isAuthenticating: false,
+            user: {},
+        }),
 });

@@ -4,6 +4,7 @@ import CommonButton from "../../components/CommonButton";
 import SignUpView from "./SignUpView";
 import SignInView from "./SignInView";
 import {TabNavigator} from "react-navigation";
+import VerifyAccountView from "./VerifyAccountView";
 
 class UnauthenticatedView extends React.Component {
   render() {
@@ -26,13 +27,19 @@ const routes = {
         screen: SignUpView,
         navigationOptions: {
             title: 'Sign Up',
-        }
+        },
     },
     SignIn: {
         screen: SignInView,
         navigationOptions: {
             title: "Sign In",
-        }
+        },
+    },
+    VerifyAccount: {
+        screen: VerifyAccountView,
+        navigationOptions: {
+            title: "Verify Account",
+        },
     },
 };
 

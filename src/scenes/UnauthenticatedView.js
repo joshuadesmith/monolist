@@ -1,10 +1,10 @@
 import * as React from "react";
 import {StyleSheet, Text, View} from "react-native";
 import {Button} from "react-native-elements"
-import SignUpView from "./SignUpView";
-import SignInView from "./SignInView";
+import SignUpView from "./auth/signup/SignUpView";
+import SignInView from "./auth/login/LogInView";
 import {createStackNavigator} from "react-navigation";
-import VerifyAccountView from "./VerifyAccountView";
+import VerifyAccountView from "./auth/verify/VerifyAccountView";
 
 class UnauthenticatedView extends React.Component {
     static navigationOptions = {

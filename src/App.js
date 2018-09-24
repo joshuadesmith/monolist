@@ -10,7 +10,7 @@ import React from "react";
 import { View } from "react-native";
 import Amplify from "aws-amplify";
 import config from "./aws-amplify-config";
-import RootContainer from "./containers/RootContainer";
+import RootContainer from "./scenes/RootContainer";
 
 Amplify.configure(config);
 

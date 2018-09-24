@@ -1,7 +1,7 @@
 import React from "react";
 import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {Field, reduxForm} from "redux-form";
-import CustomTextInput from "../components/CustomTextInput";
+import CustomTextInput from "../../../common/components/CustomTextInput";
 
 const VerifyAccountForm = (props) => {
     return (

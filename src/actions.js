@@ -3,11 +3,11 @@ import {
     SIGN_UP_SUCCESS,
     SIGN_UP_FAILURE,
     VERIFY_ACCOUNT,
-    SIGN_IN,
+    LOG_IN,
     SIGN_OUT,
     FETCH_AUTHORIZED_USER
-} from "./reducers/auth";
-import {RESET_GLOBAL_STATE} from "./reducers";
+} from "./scenes/auth/reducers/auth";
+import {RESET_GLOBAL_STATE} from "./common/reducers/index";
 
 export const resetGlobalState = () => ({
     type: RESET_GLOBAL_STATE
@@ -45,15 +45,15 @@ export const verifyAccount = ({email, code}) => ({
     }
 });
 
-export const signIn = ({email, password}) => ({
-    type: SIGN_IN,
+export const logIn = ({email, password}) => ({
+    type: LOG_IN,
     payload: {
         email,
         password,
     }
 });
 
-export const signOut = () => ({
+export const logOut = () => ({
     type: SIGN_OUT,
 });
 

@@ -1,28 +1,30 @@
-import { SIGN_UP, SIGN_UP_SUCCESS, SIGN_UP_FAILURE } from "./reducers/auth";
-import { RESET_GLOBAL_STATE } from "./reducers";
+import {SIGN_UP, SIGN_UP_SUCCESS, SIGN_UP_FAILURE} from "./reducers/auth";
+import {RESET_GLOBAL_STATE} from "./reducers";
 
 export const resetGlobalState = () => ({
-  type: RESET_GLOBAL_STATE
+    type: RESET_GLOBAL_STATE
 });
 
-export const signUp = ({ email, password }) => ({
-  type: SIGN_UP,
-  payload: {
-    email,
-    password
-  }
+export const signUp = ({email, password}) => ({
+    type: SIGN_UP,
+    payload: {
+        email,
+        password
+    }
 });
 
-export const signUpSuccess = user => ({
-  type: SIGN_UP_SUCCESS,
-  payload: {
-    user: user
-  }
+export const signUpSuccess = ({user, userConfirmed, userSub}) => ({
+    type: SIGN_UP_SUCCESS,
+    payload: {
+        user: user,
+        userConfirmed: userConfirmed,
+        userSub: userSub,
+    }
 });
 
 export const signUpFailure = err => ({
-  type: SIGN_UP_FAILURE,
-  payload: {
-    error: err
-  }
+    type: SIGN_UP_FAILURE,
+    payload: {
+        error: err
+    }
 });

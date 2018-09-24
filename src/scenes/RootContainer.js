@@ -3,7 +3,7 @@ import {StatusBar, StyleSheet, Text, View} from "react-native";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {fetchAuthorizedUser, resetGlobalState} from "../actions";
-import UnauthenticatedView from "./auth/UnauthenticatedView";
+import UnauthenticatedView from "./UnauthenticatedView";
 import AuthenticatedView from "./AuthenticatedView";
 
 class RootContainer extends React.Component {

@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import { reducer as form } from "redux-form";
-import authReducer from "./auth";
+import authReducer from "../../scenes/auth/reducers/auth";
 
 export const RESET_GLOBAL_STATE = "RESET_GLOBAL_STATE";
 

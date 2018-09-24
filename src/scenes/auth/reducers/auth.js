@@ -1,14 +1,14 @@
-import {createReducer} from "../utils";
+import {createReducer} from "../../../common/utils/index";
 
 export const FETCH_AUTHORIZED_USER = "FETCH_AUTHORIZED_USER";
 export const FETCH_AUTHORIZED_USER_IN_PROGRESS = "FETCH_AUTHORIZED_USER_IN_PROGRESS";
 export const FETCH_AUTHORIZED_USER_SUCCESS = "FETCH_AUTHORIZED_USER_SUCCESS";
 export const FETCH_AUTHORIZED_USER_FAILURE = "FETCH_AUTHORIZED_USER_FAILURE";
 
-export const SIGN_IN = "SIGN_IN";
-export const SIGN_IN_IN_PROGRESS = "SIGN_IN_IN_PROGRESS";
-export const SIGN_IN_SUCCESS = "SIGN_IN_SUCCESS";
-export const SIGN_IN_FAILURE = "SIGN_IN_FAILURE";
+export const LOG_IN = "LOG_IN";
+export const LOG_IN_PROCESSING = "LOG_IN_PROCESSING";
+export const LOG_IN_SUCCESS = "LOG_IN_SUCCESS";
+export const LOG_IN_FAILURE = "LOG_IN_FAILURE";
 
 export const SIGN_OUT = "SIGN_OUT";
 export const SIGN_OUT_IN_PROGRESS = "SIGN_OUT_IN_PROGRESS";
@@ -72,10 +72,10 @@ export default createReducer(initialState, {
     [VERIFY_ACCOUNT_FAILURE]: (state) => Object.assign({}, state, {
             isLoading: false,
         }),
-    [SIGN_IN_IN_PROGRESS]: (state) => Object.assign({}, state, {
+    [LOG_IN_PROCESSING]: (state) => Object.assign({}, state, {
             isLoading: true,
         }),
-    [SIGN_IN_SUCCESS]: (state, payload) => Object.assign({}, state, {
+    [LOG_IN_SUCCESS]: (state, payload) => Object.assign({}, state, {
             isLoading: false,
             user: {
                 username: payload.username,
@@ -84,7 +84,7 @@ export default createReducer(initialState, {
             signInError: false,
             signInErrorMessage: "",
         }),
-    [SIGN_IN_FAILURE]: (state, payload) => Object.assign({}, state, {
+    [LOG_IN_FAILURE]: (state, payload) => Object.assign({}, state, {
             isLoading: false,
             signInError: true,
             signInErrorMessage: payload.error,

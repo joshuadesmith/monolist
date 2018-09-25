@@ -4,12 +4,15 @@ import {
     Text,
     StyleSheet,
     Animated,
-    Dimensions
+    Dimensions,
+    TouchableOpacity,
 } from 'react-native'
-import { Button } from "react-native-elements";
+import {Button} from "react-native-elements";
 import {bindActionCreators} from "redux";
 import {logOut} from "../actions";
 import {connect} from "react-redux";
+import Icon from "react-native-vector-icons/MaterialIcons";
+import {colors} from "../styles";
 
 const {width, height} = Dimensions.get('window');
 const whale = require("../assets/Wildlife-icons/png/animals-26.png");
@@ -21,8 +24,18 @@ class HomeView extends React.Component {
         this.animate = this.animate.bind(this);
     }
 
-    static navigationOptions = {
-        header: null,
+    static navigationOptions = ({navigation}) => {
+        return {
+            title: 'MonoList',
+            headerRight: (
+                <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+                    <View style={{paddingRight: 10}}>
+                        <Icon name="settings" size={20} color={colors.lightGrey}/>
+                    </View>
+                </TouchableOpacity>
+            ),
+            headerBackTitle: 'Home',
+        }
     };
 
     componentDidMount() {
@@ -35,6 +48,7 @@ class HomeView extends React.Component {
     }
 
     AnimatedScale = new Animated.Value(1);
+
     animate() {
         Animated.timing(
             this.AnimatedScale,
@@ -64,11 +78,16 @@ class HomeView extends React.Component {
                     <Text style={styles.welcome}>Welcome, {username}</Text>
                     <Animated.Image
                         source={whale}
-                        style={{tintColor: "#FF00FF", width: width / 2, height: width / 2, transform: [{scale: this.AnimatedScale}]}}
+                        style={{
+                            tintColor: colors.primaryColor,
+                            width: width / 2,
+                            height: width / 2,
+                            transform: [{scale: this.AnimatedScale}]
+                        }}
                         resizeMode='contain'
                     />
                     <Button onPress={this.dispatchSignOut}
-                            style={styles.welcome}
+                            style={styles.signOutButton}
                             backgroundColor={styles.signOutButton.backgroundColor}
                             borderRadius={styles.signOutButton.borderRadius}
                             title={"Log Out"}
@@ -99,7 +118,7 @@ export default connect(
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#666666',
+        backgroundColor: colors.darkGrey,
         alignItems: 'center',
         justifyContent: 'center',
         flex: 1
@@ -108,20 +127,21 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     welcome: {
-        // color: 'rgba(0, 0, 0, .85)',
+        color: colors.lightGrey,
         marginBottom: 26,
         fontSize: 22,
         textAlign: 'center'
     },
     signOutButton: {
         marginTop: 15,
-        backgroundColor: '#FF00FF',
+        marginBottom: 26,
+        backgroundColor: colors.primaryColor,
         borderRadius: 20,
     },
     signOutButtonTitle: {
-        color: "#FFFFFF",
+        color: colors.white,
         paddingHorizontal: 10,
         fontSize: 16,
         letterSpacing: 1.25,
-    }
+    },
 });

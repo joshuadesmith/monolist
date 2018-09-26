@@ -11,12 +11,12 @@ class LinkServicesView extends React.Component {
                 <Text style={styles.settingsHeader}>
                     Link Services
                 </Text>
-                <LinkServiceComponent buttonTitle={"Link Spotify"}
+                <LinkServiceComponent buttonTitle={"Spotify"}
                                       buttonColor={colors.spotifyGreen}
                                       onButtonPress={() => console.log("Spotify button pressed")}
                                       isLinked={false}
                 />
-                <LinkServiceComponent buttonTitle={"Link SoundCloud"}
+                <LinkServiceComponent buttonTitle={"SoundCloud"}
                                       buttonColor={colors.soundcloudOrange}
                                       onButtonPress={() => console.log("SoundCloud button pressed")}
                                       isLinked={false}

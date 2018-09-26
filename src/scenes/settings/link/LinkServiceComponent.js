@@ -1,6 +1,6 @@
 import React from "react";
 import {Text, TouchableOpacity, View} from "react-native";
-import styles from "./styles";
+import styles from "./styles/index";
 
 export const LinkServiceComponent = (props) => {
     const { buttonTitle, buttonColor, onButtonPress, isLinked } = props;

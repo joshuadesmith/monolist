@@ -13,6 +13,11 @@ import {logOut} from "../actions";
 import {connect} from "react-redux";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import {colors} from "../styles";
+import {
+    requestSpotifyAccessToken,
+    requestSpotifyAuthCodeFailure,
+    requestSpotifyAuthCodeSuccess
+} from "./settings/actions";
 
 const {width, height} = Dimensions.get('window');
 const whale = require("../assets/Wildlife-icons/png/animals-26.png");
@@ -43,6 +48,7 @@ class HomeView extends React.Component {
             Linking.getInitialURL().then((url) => {
                 if (url) {
                     console.log('Initial URL: ', url);
+                    this.navigate(url);
                 }
             }).catch((err) => console.error('An error occurred: ', err));
         } else {
@@ -56,17 +62,42 @@ class HomeView extends React.Component {
     }
 
     handleOpenUrl = (event) => {
-        console.log(event.url);
         this.navigate(event.url);
     };
 
     navigate = (url) => {
         const route = url.replace(/.*?:\/\//g, '');
-        const routeName = route.split('/')[0];
 
+        // try to parse query string
+        const routeSubstrings = route.split('/');
+        if (routeSubstrings.length > 1) {
+            if (routeSubstrings[1] === 'callback') {
+                if (routeSubstrings[2] === 'spotify') {
+                    console.log("Got callback from Spotify authorization");
+                    const params = routeSubstrings[3].replace('?', '').split('&');
+                    const paramsDict = {};
+                    params.forEach(p => {
+                        const pSplit = p.split('=');
+                        paramsDict[pSplit[0]] = pSplit[1];
+                    });
+                    console.log(paramsDict);
+                    if (paramsDict.hasOwnProperty('code')) {
+                        this.props.requestSpotifyAuthCodeSuccess(paramsDict.code);
+                        this.props.requestSpotifyToken(paramsDict.code);
+                    } else if (paramsDict.hasOwnProperty('error')) {
+                        this.props.requestSpotifyAuthCodeSuccess(paramsDict.error);
+                    }
+                }
+            }
+        }
+
+        const routeName = routeSubstrings[0];
         if (routeName) {
             //ensure capitalization
             const routNameCapitalized = routeName.charAt(0).toUpperCase() + routeName.slice(1);
+            if (routeName === 'settings') {
+
+            }
             this.props.navigation.navigate(routNameCapitalized);
         }
     };
@@ -138,6 +169,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     signOut: bindActionCreators(logOut, dispatch),
+    requestSpotifyAuthCodeFailure: bindActionCreators(requestSpotifyAuthCodeFailure, dispatch),
+    requestSpotifyAuthCodeSuccess: bindActionCreators(requestSpotifyAuthCodeSuccess, dispatch),
+    requestSpotifyToken: bindActionCreators(requestSpotifyAccessToken, dispatch),
 });
 
 export default connect(

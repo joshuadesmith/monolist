@@ -11,6 +11,10 @@ class SettingsView extends React.Component {
         headerBackImage: (<Image source={backImg} style={styles.backImage}/>),
     };
 
+    componentDidMount() {
+
+    }
+
     render() {
         return (
             <View style={styles.container}>

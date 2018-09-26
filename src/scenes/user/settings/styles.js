@@ -6,12 +6,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#666666',
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
-        flex: 1
+        flex: 1,
+        paddingHorizontal: 15,
     },
     section: {
         paddingTop: 15,
-        paddingHorizontal: 15,
+        paddingBottom: 10,
         width: "100%",
+        borderBottomColor: colors.lightGrey,
+        borderBottomWidth: 1,
     },
     settingsHeader: {
         color: colors.lightGrey,
@@ -27,25 +30,6 @@ const styles = StyleSheet.create({
         marginRight: 5,
         marginBottom: 5,
     },
-    linkComponentContainer: {
-        width: "100%",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        marginVertical: 5,
-    },
-    linkText: {
-        fontSize: 16,
-        color: colors.lightGrey,
-    },
-    linkButton: {
-        marginHorizontal: 0,
-        paddingHorizontal: 15,
-        paddingVertical: 5,
-        borderRadius: 13,
-        borderColor: "transparent",
-        borderWidth: 0,
-    }
 });
 
 export default styles;

@@ -5,7 +5,7 @@ import {
     StyleSheet,
     Animated,
     Dimensions,
-    TouchableOpacity,
+    TouchableOpacity, Platform, Linking,
 } from 'react-native'
 import {Button} from "react-native-elements";
 import {bindActionCreators} from "redux";
@@ -39,8 +39,37 @@ class HomeView extends React.Component {
     };
 
     componentDidMount() {
-        this.animate()
+        if (Platform.OS === 'android') {
+            Linking.getInitialURL().then((url) => {
+                if (url) {
+                    console.log('Initial URL: ', url);
+                }
+            }).catch((err) => console.error('An error occurred: ', err));
+        } else {
+            Linking.addEventListener('url', this.handleOpenUrl)
+        }
+        this.animate();
     }
+
+    componentWillUnmount() {
+        Linking.removeEventListener('url', this.handleOpenUrl)
+    }
+
+    handleOpenUrl = (event) => {
+        console.log(event.url);
+        this.navigate(event.url);
+    };
+
+    navigate = (url) => {
+        const route = url.replace(/.*?:\/\//g, '');
+        const routeName = route.split('/')[0];
+
+        if (routeName) {
+            //ensure capitalization
+            const routNameCapitalized = routeName.charAt(0).toUpperCase() + routeName.slice(1);
+            this.props.navigation.navigate(routNameCapitalized);
+        }
+    };
 
     dispatchSignOut() {
         console.log("dispatching logOut");

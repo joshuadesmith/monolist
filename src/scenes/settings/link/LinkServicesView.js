@@ -1,10 +1,13 @@
 import React from "react";
-import {Text, View} from "react-native";
+import {Linking, Platform, Text, View} from "react-native";
 import styles from "../styles";
 import {LinkServiceComponent} from "./LinkServiceComponent";
 import {colors} from "../../../styles";
+import {bindActionCreators} from "redux";
+import {requestSpotifyAuthCode} from "../actions";
 
 class LinkServicesView extends React.Component {
+
     render() {
         return (
             <View style={styles.section}>
@@ -25,5 +28,13 @@ class LinkServicesView extends React.Component {
         )
     }
 }
+
+const mapStateToProps = state => ({
+    settings: state.settings,
+});
+
+const mapDispatchToProps = dispatch => ({
+    requestSpotifyAuthCode: bindActionCreators(requestSpotifyAuthCode, dispatch),
+});
 
 export default LinkServicesView;

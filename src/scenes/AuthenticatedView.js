@@ -4,15 +4,6 @@ import HomeView from "./HomeView";
 import SettingsView from "./settings/SettingsView";
 import {colors} from "../styles";
 
-const routeConfig = {
-    Home: {
-        screen: HomeView,
-    },
-    Settings: {
-        screen: SettingsView,
-    }
-};
-
 const StackNav = createStackNavigator(
     {
         Home: HomeView,

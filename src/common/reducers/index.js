@@ -1,7 +1,7 @@
 import {combineReducers} from "redux";
 import {reducer as form} from "redux-form";
 import authReducer from "../../scenes/auth/reducers/auth";
-import settingsReducer from "../../scenes/user/settings/reducers";
+import settingsReducer from "../../scenes/settings/reducers";
 
 export const RESET_GLOBAL_STATE = "RESET_GLOBAL_STATE";
 

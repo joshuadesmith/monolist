@@ -1,4 +1,4 @@
-import {createReducer} from "../../../common/utils";
+import {createReducer} from "../../common/utils/index";
 
 export const REQUEST_SPOTIFY_AUTH_CODE = "REQUEST_SPOTIFY_AUTH_CODE";
 export const REQUESTING_SPOTIFY_AUTH_CODE = "REQUESTING_SPOTIFY_AUTH_CODE";

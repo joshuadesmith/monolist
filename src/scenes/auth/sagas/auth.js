@@ -1,7 +1,5 @@
 import {call, put, takeLatest} from "redux-saga/effects";
 import {
-    SIGN_UP_SUCCESS,
-    SIGN_UP_FAILURE,
     SIGN_UP,
     SIGN_UP_IN_PROGRESS,
     VERIFY_ACCOUNT,

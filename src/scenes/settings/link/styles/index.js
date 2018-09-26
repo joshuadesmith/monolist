@@ -18,6 +18,12 @@ const linkComponentStyles = StyleSheet.create({
         borderColor: "transparent",
         borderWidth: 0,
     },
+    linkBtnDisabled: {
+        backgroundColor: colors.darkGrey,
+        borderRadius: 13,
+        borderColor: colors.lightGrey,
+        borderWidth: 1,
+    },
     linkBtnTitle: {
         color: "#FFFFFF",
         fontSize: 16,

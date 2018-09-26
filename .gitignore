@@ -72,3 +72,6 @@ awsmobilejs/\#current-backend-info
 amplify/
 .amplifyrc
 src/asw-amplify-config.js
+
+# Private config stuffs
+src/spotify-config.js

@@ -2,7 +2,7 @@ import React from "react";
 import {Text, View} from "react-native";
 import styles from "../styles";
 import {LinkServiceComponent} from "./LinkServiceComponent";
-import {colors} from "../../../../styles";
+import {colors} from "../../../styles";
 
 class LinkServicesView extends React.Component {
     render() {

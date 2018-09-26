@@ -3,7 +3,7 @@ import {View, Text, Image} from "react-native";
 import styles from "./styles";
 import LinkServicesView from "./link/LinkServicesView";
 
-const backImg = require("../../../assets/icons/baseline_home_black_48dp.png");
+const backImg = require("../../assets/icons/baseline_home_black_48dp.png");
 
 class SettingsView extends React.Component {
     static navigationOptions = {

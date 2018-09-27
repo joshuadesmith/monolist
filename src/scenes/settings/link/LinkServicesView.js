@@ -6,7 +6,7 @@ import {colors} from "../../../styles";
 import {bindActionCreators} from "redux";
 import {requestSpotifyAuthCode} from "../actions";
 import {connect} from "react-redux";
-import {CLIENT_ID, REDIRECT_URI} from "../../../spotify-config";
+import {CLIENT_ID, REDIRECT_URI} from "../../../config/spotify-config";
 
 class LinkServicesView extends React.Component {
     constructor(props) {

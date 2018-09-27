@@ -8,7 +8,7 @@ import {
     REQUESTING_SPOTIFY_AUTH_CODE
 } from "./reducers";
 import axios from "axios";
-import {CLIENT_ID, CLIENT_SECRET, REDIRECT_URI} from "../../spotify-config";
+import {CLIENT_ID, CLIENT_SECRET, REDIRECT_URI} from "../../config/spotify-config";
 import qs from "qs";
 
 function* callRequestSpotifyAuthCode(action) {
